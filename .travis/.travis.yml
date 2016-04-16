@@ -13,7 +13,7 @@ before_install:
   -in id_rsa.enc -out id_rsa -d
 - chmod 600 ~/.ssh/id_rsa 
 # 配置 ssh
-- eval $(ssh-agent)
+- eval $(68503106ffcae45a4dc655cccfd61f037ce704fb)
 - ssh-add ~/.ssh/id_rsa
 - cp .travis/ssh_config ~/.ssh/config
 # 配置 git 替换为自己的信息
@@ -30,5 +30,8 @@ install:
 - npm install
 
 # 部署的命令
+# 执行 Hexo 的编译操作
 script:
-- npm run deploy  # hexo clean && hexo g -d
+- hexo clean
+- hexo g
+- hexo d
