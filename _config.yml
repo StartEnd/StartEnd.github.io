@@ -69,9 +69,10 @@ theme: maupassant
 deploy:
   type: git
 #  repository:
-  repo:
-      gitcafe: git@git.coding.net:Start_End/Hexo.git,coding-pages
-      github: git@github.com:StartEnd/StartEnd.github.io.git,master
+  repo: git@github.com:StartEnd/StartEnd.github.io.git
+  branch: gh-pages
+##    gitcafe: git@git.coding.net:Start_End/Hexo.git,coding-pages
+##    github: git@github.com:StartEnd/StartEnd.github.io.git,gh-pages
 
 # search
 search:
