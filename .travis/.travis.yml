@@ -1,0 +1,34 @@
+# 指定环境
+language: node_js
+
+node_js:
+- '4' #指定使用 node.js 最新的稳定版0.12
+
+# 指定分支
+branches:
+  only:
+  - master #这个分支应当使用自己的 Dev repo
+before_install:
+- openssl aes-256-cbc -K $encrypted_30329b685338_key -iv $encrypted_30329b685338_iv
+  -in id_rsa.enc -out id_rsa -d
+- chmod 600 ~/.ssh/id_rsa 
+# 配置 ssh
+- eval $(ssh-agent)
+- ssh-add ~/.ssh/id_rsa
+- cp .travis/ssh_config ~/.ssh/config
+# 配置 git 替换为自己的信息
+- git config --global user.name 'StartEnd'
+- git config --global user.email 858965877@qq.com
+
+cache:
+  directories:
+    - node_modules
+
+# 安装依赖
+install:
+- npm install hexo-cli -g
+- npm install
+
+# 部署的命令
+script:
+- npm run deploy  # hexo clean && hexo g -d
