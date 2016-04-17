@@ -1,26 +1,14 @@
 language: node_js
-sudo: false
 node_js:
-  - "0.10"
+  - "0.12"
+install:
+  - npm install hexo-cli -g
+  - npm install hexo --save
+  - npm install
+script:
+  - chmod +x ./build.sh
+  - ./build.sh > /dev/null
 branches:
   only:
-  - master
-before_install:
-- openssl aes-256-cbc -K $encrypted_08ef193c03e0_key -iv $encrypted_08ef193c03e0_iv
-  -in ./travis/id_rsa.enc -out ~/.ssh/id_rsa -d
-- chmod 600 ~/.ssh/id_rsa
-- eval $(ssh-agent)
-- ssh-add ~/.ssh/id_rsa
-- cp .travis/ssh_config ~/.ssh/config
-- git config --global user.name 'StartEnd'
-- git config --global user.email 858965877@qq.com
-cache:
-  directories:
-  - node_modules
-install:
-- npm install hexo-cli -g
-- npm install
-script:
-- hexo clean
-- hexo g
-- hexo d
+    - raw
+
