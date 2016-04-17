@@ -13,7 +13,6 @@ script:
 after_success:
 - git config --global user.name "StartEnd"
 - git config --global user.email "858965877@qq.com"
-- sed -i'' "/^ *repo/s~github\.com~${GH_TOKEN}@github.com~" _config.yml
 - hexo deploy
 env:
   global:
