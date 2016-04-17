@@ -5,16 +5,16 @@ branches:
   only:
   - raw
 before_install:
+- npm install -g hexo
 - npm install -g hexo-cli
+
+before_script:
+- git config --global user.name 'StartEnd'
+- git config --global user.email '858965877@qq.com'
+- sed -i'' "s~git@github.com:StartEnd/StartEnd.github.io.git~https://${GitHubKEY}:x-oauth-basic@github.com/StartEnd/StartEnd.github.io.git~" _config.yml
 install:
 - npm install
 script:
 - hexo generate
 after_success:
-- git config --global user.name "StartEnd"
-- git config --global user.email 858965877@qq.com
-- sed -i'' "s~git@github.com:StartEnd/StartEnd.github.io.git~https://${GitHubKEY}:x-oauth-basic@github.com/StartEnd/StartEnd.github.io.git~" _config.yml
 - hexo deploy
-env:
-  global:
-    secure: dU3LjxRGumqy368cMQj6igJ6VMV95KlDFL3eALciLipdEuO+Db5JkLQ9Jjz6pRj3zJU7CBNqQi7Q+vk1smja63gn5ClsuK4hE8RVIxAv2sOHi/oF0OZ3LQgYhHaUtDfZenkxppQME/nsRvCV6H2ha8jmfv6AE2wd4DOAqLnviWvCFssi084H/ySG/dkdcTWPKO5Y+q7aFOL1YnnEQ0P8MkcEUvxktoBa78A53RTEzRtSWrB+UjRVJyD/iUVAn5DlLjtFtyZc8kv5pf1iilJO9FjfXaorqKduecXuYJXMz0iWpl0GGutbWHdm9Ao2J9ZMaTFKe+zmIwdxm+UW4mLkRcUkJCP9EPrIe6AXnjqwQOn3mtWKwK0V5EvfiCmfZ80NyZQ73X2m0+Ka1NeetgcDR9OyOD4xJFbtCFvCGKsZTTvJjGSU4ox7WWOT7+6Tsz6ETIoqrHzEGcJXK+/5zi7qHgtNt86NXI9eXD5UtPHpWbi2DaeHd7QgDw8JOE17VFqONQUKvIFADRtB7wNgdmVLfmNqoCSsynoS/Lb3+DlTDZAYdC9j81C1+p0cdHwV7QSZ2ONcyhvDGXW6RX23dnETD7D5QqO+N9WbE8vFXawcyt0Zv0jWm85hJ/D2tktwPmhcm/UIVGJbGvZsi7fu/JYpp0EJBWz/vVWbNzrL4IvZ0Ac=
