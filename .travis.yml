@@ -1,14 +1,20 @@
 language: node_js
 node_js:
-  - "0.12"
-install:
-  - npm install hexo-cli -g
-  - npm install hexo --save
-  - npm install
-script:
-  - chmod +x ./build.sh
-  - ./build.sh > /dev/null
+- '0.12'
 branches:
   only:
-    - raw
-
+  - source
+before_install:
+- npm install -g hexo-cli
+install:
+- npm install
+script:
+- hexo generate
+after_success:
+- git config --global user.name "StartEnd"
+- git config --global user.email "858965877@qq.com"
+- sed -i'' "/^ *repo/s~github\.com~${GH_TOKEN}@github.com~" _config.yml
+- hexo deploy
+env:
+  global:
+    secure: 0OIitPQqpMmt7VV48IoOLgt3RkOzUcXmaFckUqzd58wXEWEgVOB1WPCJUkRu/Ey2a+ObVxm92f5nvFmsj5S8QYYy7DoROMJcIQNumpXwQb33sCY3MUFTqyUqHiL7bBY0ClYUguWJfGkryGITuJVQpR8AqIab48uLvcaXzRuZ5aE5WQk8TMjubZpToNq41pbkTF/Lo/uq90Tw/56+5TrFTY+9M80dQJ2ysoZbhz0DkajQcn4isaGTF9iqoT374OBNfAWdG6ty/g2YzymP6xG8UHBWea4EVnIRYwtss0bnX4z7I6gX4ueagx3Bj+iLLY8bb+IugwEzOVQdI4maEnD1+oWVCInDRhaelNj+m0WoFQtEtimBl3Rt1ng4SobxIWTlCEGW2Q6lFvGOmxZWCjsqlPIeScpslTADOKH9x3YGAdlmTVi1nhe6LA2CYgQzdFmTEyys9w+XwM7Jir808Tz8SrysFyKtUIUzvY2jTWf3pJfXnwzaGzzHutsSjikPZWPZ0jF2u8bF+IdQx4KEkNWhVQFEkswqNE0ZRUJVeybpXxD84JyMtyLsgRQMBRQY+p/6w6lR1UtiFvdpVb4GfRmPayaUKhYCLuayBOC7d9+7msN0NpyFD9IbU41z1Efg6cR/XP3ziVuSnTIFk+OK+etKhnEVfMmuGLbyVihV9zktXCU=
